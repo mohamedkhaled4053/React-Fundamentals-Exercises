@@ -1,10 +1,11 @@
 import "./App.css";
+import { Fans } from "./Fans";
 import logo from "./logo.svg";
 
 // Display a list of movies where each movie contains a list of users that favorited it.
 // For detailed instructions, refer to Instructions.md.
 
-const profiles = [
+export const profiles = [
   {
     id: 1,
     userID: "1",
@@ -37,7 +38,7 @@ const profiles = [
   },
 ];
 
-const users = {
+export const users = {
   1: {
     id: 1,
     name: "Jane Cruz",
@@ -101,6 +102,15 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <h2>How Popular is Your Favorite Movie?</h2>
+
+      <ul>
+        {Object.keys(movies).map((i) => (
+          <li key={movies[i].id}>
+            {movies[i].name}
+            <Fans movie={movies[i]} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

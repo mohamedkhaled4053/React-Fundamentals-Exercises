@@ -1,6 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { ItemsList } from "./ItemsList";
+import { DeleteButton } from "./DeleteButton";
+import { Form } from "./Form";
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -31,26 +34,19 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <h2>Shopping List</h2>
-      <form onSubmit={addItem}>
-        <input
-          type="text"
-          placeholder="Enter New Item"
-          value={value}
-          onChange={handleChange}
-        />
-        <button disabled={inputIsEmpty()}>Add</button>
-      </form>
+      <Form
+        addItem={addItem}
+        value={value}
+        handleChange={handleChange}
+        inputIsEmpty={inputIsEmpty}
+      />
 
-      <button onClick={deleteLastItem} disabled={noItemsFound()}>
-        Delete Last Item
-      </button>
+      <DeleteButton
+        deleteLastItem={deleteLastItem}
+        noItemsFound={noItemsFound}
+      />
 
-      <p className="items">Items</p>
-      <ol className="item-list">
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
+      <ItemsList items={items} />
     </div>
   );
 };
